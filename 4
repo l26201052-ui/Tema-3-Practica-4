@@ -1,0 +1,88 @@
+package tema3;
+import java.util.Scanner;
+public class SimuladorCompetenciaResistencia {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        final int RONDAS = 5;
+        final double LIMITE_BAJO = 2.0;
+        final double LIMITE_ALTO = 4.0;
+        String repetir;
+        do {
+            System.out.print("Cantidad de participantes: ");
+            int participantes = scanner.nextInt();
+            while (participantes <= 0) {
+                System.out.print("Debe ser mayor a 0. Participantes: ");
+                participantes = scanner.nextInt();
+            }
+            double distanciaTotal = 0;
+            int rondasBajas = 0;
+            int rondasMedias = 0;
+            int rondasAltas = 0;
+            double mayorDistancia = -1;
+            int mejorParticipante = 0;
+            for (int p = 1; p <= participantes; p++) {
+                System.out.println("\n Participante " + p);
+                double acumulado = 0;
+                for (int r = 1; r <= RONDAS; r++) {
+                    System.out.print("  Ronda " + r + " (km): ");
+                    double km = scanner.nextDouble();
+                    while (km < 0) {
+                        System.out.print("  No puede ser negativa. Ronda " + r + " (km): ");
+                        km = scanner.nextDouble();
+                    }
+                    acumulado += km;
+
+                    if (km < LIMITE_BAJO) {
+                        rondasBajas++;
+                    } else if (km <= LIMITE_ALTO) {
+                        rondasMedias++;
+                    } else {
+                        rondasAltas++;
+                    }
+                }
+
+                distanciaTotal += acumulado;
+
+                if (acumulado > mayorDistancia) {
+                    mayorDistancia = acumulado;
+                    mejorParticipante = p;
+                }
+            }
+
+            double promedio = distanciaTotal / participantes;
+
+            System.out.println("\n Que estadistica quieres ver?");
+            System.out.println("1) Distancia total");
+            System.out.println("2) Promedio por participante");
+            System.out.println("3) Rondas por categoria");
+            System.out.println("4) Participante con mayor distancia");
+            System.out.print("Opcion: ");
+            int opcion = scanner.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    System.out.printf("Distancia total: %.2f km%n", distanciaTotal);
+                    break;
+                case 2:
+                    System.out.printf("Promedio por participante: %.2f km%n", promedio);
+                    break;
+                case 3:
+                    System.out.println("Rondas bajas: " + rondasBajas);
+                    System.out.println("Rondas medias: " + rondasMedias);
+                    System.out.println("Rondas altas: " + rondasAltas);
+                    break;
+                case 4:
+                    System.out.printf("Gana el participante %d con %.2f km%n",
+                            mejorParticipante, mayorDistancia);
+                    break;
+                default:
+                    System.out.println("Opcion no valida.");
+            }
+
+            System.out.print("\n Registrar otra competencia? (si/no): ");
+            repetir = scanner.next();
+        } while (repetir.equalsIgnoreCase("si"));
+    }
+
+
+}

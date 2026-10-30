@@ -1,0 +1,70 @@
+package tema3;
+import java.util.Scanner;
+public class MatematicasJava {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
+
+        do {
+            System.out.println("\n  MENU ");
+            System.out.println("1) Cuadrado de un numero");
+            System.out.println("2) Cubo de un numero");
+            System.out.println("3) Par o impar");
+            System.out.println("4) Suma de 1 hasta N");
+            System.out.println("5) Salir");
+            System.out.print("Elige una opcion: ");
+            opcion = scanner.nextInt();
+            switch (opcion) {
+                case 1:
+                    System.out.print("Ingresa un numero positivo: ");
+                    int n1 = scanner.nextInt();
+                    if (n1 > 0) {
+                        System.out.println("El cuadrado es: " + (n1 * n1));
+                    } else {
+                        System.out.println("Error: el numero debe ser positivo.");
+                    }
+                    break;
+                case 2:
+                    System.out.print("Ingresa un numero positivo: ");
+                    int n2 = scanner.nextInt();
+                    if (n2 > 0) {
+                        System.out.println("El cubo es: " + (n2 * n2 * n2));
+                    } else {
+                        System.out.println("Error: el numero debe ser positivo.");
+                    }
+                    break;
+                case 3:
+                    System.out.print("Ingresa un numero positivo: ");
+                    int n3 = scanner.nextInt();
+                    if (n3 > 0) {
+                        if (n3 % 2 == 0) {
+                            System.out.println(n3 + " es PAR.");
+                        } else {
+                            System.out.println(n3 + " es IMPAR.");
+                        }
+                    } else {
+                        System.out.println("Error: el numero debe ser positivo.");
+                    }
+                    break;
+                case 4:
+                    System.out.print("Ingresa un numero positivo: ");
+                    int n4 = scanner.nextInt();
+                    if (n4 > 0) {
+                        int suma = 0;
+                        for (int i = 1; i <= n4; i++) {
+                            suma += i;
+                        }
+                        System.out.println("La suma de 1 a " + n4 + " es: " + suma);
+                    } else {
+                        System.out.println("Error: el numero debe ser positivo.");
+                    }
+                    break;
+                case 5:
+                    System.out.println("Gracias por usar el programa. Hasta luego!");
+                    break;
+                default:
+                    System.out.println("Error: opcion inexistente. Intenta de nuevo.");
+            }
+        } while (opcion != 5);
+    }
+}

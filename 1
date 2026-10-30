@@ -1,0 +1,56 @@
+package tema3;
+
+import java.util.Scanner;
+public class SecuenciaNumerica {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+                int N = scanner.nextInt();
+                while (N <= 0) {
+                    System.out.print("Tiene que ser positivo: ");
+                    N = scanner.nextInt();
+                }
+
+                int suma4 = 0;
+                int cont3 = 0;
+                int contAmbos = 0;
+                int sumaPar = 0;
+                int sumaImpar = 0;
+                int contador5 = 0;
+
+                for (int i = 1; i <= N; i++) {
+                    if (i % 4 == 0) {
+                        suma4 = suma4 + i;
+                    }
+                    if (i % 3 == 0) {
+                        cont3++;
+                    }
+                    if (i % 4 == 0 && i % 3 == 0) {
+                        contAmbos++;
+                    }
+                    if (i % 2 == 0) {
+                        sumaPar = sumaPar + i;
+                    } else {
+                        sumaImpar = sumaImpar + i;
+                    }
+                    if (i % 5 == 0) {
+                        contador5++;
+                    }
+                }
+
+                System.out.println("Suma divisibles entre 4: " + suma4);
+                System.out.println("Cuantos multiplos de 3: " + cont3);
+                System.out.println("Divisibles entre 3 y 4: " + contAmbos);
+
+                System.out.println("Que quieres ver? 1=pares 2=impares 3=multiplos de 5");
+                int op = scanner.nextInt();
+                switch (op) {
+                    case 1: System.out.println("Suma pares: " + sumaPar); break;
+                    case 2: System.out.println("Suma impares: " + sumaImpar); break;
+                    case 3: System.out.println("Multiplos de 5: " + contador5); break;
+                    default: System.out.println("Opcion no valida");
+                }
+
+        }
+
+    }
+
